@@ -14,8 +14,8 @@ class CategoryController extends Controller
     private $category;
 
     public function __construct(Category $category) {
-        $this->htmlSelect= ' ';  
-        $this->category= $category;  
+        $this->htmlSelect= ' ';
+        $this->category= $category;
     }
 
     public function create() {
@@ -48,8 +48,8 @@ class CategoryController extends Controller
 
     public function edit($id) {
         $category = $this->category->find($id);
-        $htmlOption = $this->getCategory($category->parent_id);        
-        
+        $htmlOption = $this->getCategory($category->parent_id);
+
         return view('admin.category.edit', compact('category', 'htmlOption'));
     }
 

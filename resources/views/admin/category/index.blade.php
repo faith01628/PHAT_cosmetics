@@ -27,6 +27,7 @@
                                 <tr>
                                     <th scope="col">No.</th>
                                     <th scope="col">Category Name</th>
+                                    <th scope="col">Parent Category</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -48,6 +49,20 @@
 
                                         </td>
                                     </tr>
+                                    @else
+                                        <tr>
+                                            <th scope="row">{{ $category->id }}</th>
+                                            <td>{{ $category->name }}</td>
+                                            <td>{{ $categories->where('id',$category->parent_id)->first() ? $categories->where('id',$category->parent_id)->first()->name : '' }}</td>
+                                            <td>
+                                                <a href="{{ route('categories.edit', ['id' => $category->id]) }}"
+                                                    class="btn btn-default">Edit</a>
+                                                <a href=" {{ route('categories.delete', ['id' => $category->id]) }}"
+                                                    class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    @endif
+
                                 @endforeach
 
                             </tbody>

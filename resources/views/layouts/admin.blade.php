@@ -29,7 +29,9 @@
 
 
         @include('partials.footer')
+
     </div>
+
     <!-- jQuery -->
     <script src="  {{ asset('adminlte/plugins/jquery/jquery.min.js') }} "></script>
     <!-- Bootstrap 4 -->

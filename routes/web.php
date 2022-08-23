@@ -4,17 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 
-
-// Homepage access
-Route::get('/', 'App\Http\Controllers\HomeController@index');
-
-
 // For admin access
 Route::get('/admin', 'App\Http\Controllers\AdminController@loginAdmin');
 Route::post('/admin', 'App\Http\Controllers\AdminController@postLoginAdmin');
 
-Route::get('/admin/home', function(){
-    return view('admin.home');
+
+Route::get('/home', function(){
+    return view('home');
 });
 
 Auth::routes();
@@ -275,17 +271,7 @@ Route::prefix('users')->group(function () {
         'uses' => 'App\Http\Controllers\AdminUserController@delete'
     ]);
     
-
-    
-
-    
-
-    
-
-    
-});
-
-//Roles
+    //Roles
 Route::prefix('roles')->group(function () {
     Route::get('/', [
         'as' => 'roles.index',
@@ -297,41 +283,7 @@ Route::prefix('roles')->group(function () {
         'uses' => 'App\Http\Controllers\AdminRoleController@create'
     ]);
 
-    Route::post('/store', [
-        'as' => 'roles.store',
-        'uses' => 'App\Http\Controllers\AdminRoleController@store'
-    ]);
 
-    Route::get('/edit/{id}', [
-        'as' => 'roles.edit',
-        'uses' => 'App\Http\Controllers\AdminRoleController@edit'
-    ]);
-
-    Route::post('/update/{id}', [
-        'as' => 'roles.update',
-        'uses' => 'App\Http\Controllers\AdminRoleController@update'
-    ]);    
-
-    Route::get('/delete/{id}', [
-        'as' => 'roles.delete',
-        'uses' => 'App\Http\Controllers\AdminRoleController@delete'
-    ]);
-});
-
-//Permission
-Route::prefix('permissions')->group(function () {
-
-    Route::get('/create', [
-        'as' => 'permissions.create',
-        'uses' => 'App\Http\Controllers\AdminPermissionController@createPermissions'
-    ]);
-
-    Route::post('/store', [
-        'as' => 'permissions.store',
-        'uses' => 'App\Http\Controllers\AdminPermissionController@store'
-    ]);
-
-  
     
 
     
@@ -345,3 +297,16 @@ Route::prefix('permissions')->group(function () {
 
 });
 
+
+
+
+
+
+
+// Route::get('/admin', function() {
+//     return view('layouts.admin');
+// })
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
